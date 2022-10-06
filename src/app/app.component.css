@@ -1,0 +1,19 @@
+.Header
+{
+    margin-left: 50px;
+    margin-top: 50px;
+    display: flex;
+}
+.Heading
+{
+    font-size: 30px;
+    margin-left: 150px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+}
+.app{
+    
+    margin: auto;
+    max-width: 600px;
+}

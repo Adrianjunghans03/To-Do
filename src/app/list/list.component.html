@@ -1,0 +1,11 @@
+<div class="list">
+    <ng-container *ngFor="let myIndividualTask of myTasks">
+      <app-list-item 
+      [todoFromList]="myIndividualTask.dailyTask" 
+      [sid]="myIndividualTask.id" 
+      (getid)="getidparent($event)"
+      (getcheck)="getchecked($event)">
+      </app-list-item>   
+    </ng-container>
+
+</div>

@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'To-Do';
+  todoFromInputChild = null;
+
+  
+//Function stores Data recieved from Input in todoFromChild
+//then assigns it to todoFromInputChild
+  onDailyTaskChangedParent(todoFromChild:string){  
+    this.todoFromInputChild =  todoFromChild;
+
+  }
+
+
 }

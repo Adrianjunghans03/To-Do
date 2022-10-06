@@ -1,0 +1,23 @@
+
+<div class="task" [style.background-color]="color" [style.border-color]="color">
+
+    <input type ="checkbox"
+    class ="checkmark" 
+    [(ngModel)] ="check" 
+    (click) ="checkboxclick()">
+    
+    <div class="font" 
+    [style.color]="fontcolor">
+    
+    <!-- <div *ngIf ="checkbox == false">{{this.tasks}}</div>
+    
+    <div *ngIf ="checkbox == true"><del>{{this.tasks}}</del></div> -->
+
+    <div *ngIf="checkbox == false;else trueCheckbox">{{this.tasks}}</div>
+    <ng-template #trueCheckbox><del>{{this.tasks}}</del></ng-template>
+    
+</div>
+
+<button type ="button" class ="del" (click) ="Delete()">&#10006;</button>
+</div>
+

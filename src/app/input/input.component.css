@@ -1,0 +1,23 @@
+.Btn-add{
+    border: solid 2px rgb(222, 222, 222);
+    height: 35px;
+    width: 115px;
+    color: rgb(124, 124, 124);
+    
+}
+.Input-field
+{
+    border: solid 1px rgb(223, 223, 223);
+    height: 31px;
+    width: 251px;
+    font-size: 15px;
+    color: rgb(78, 78, 78);
+    padding-left: 5px;
+    vertical-align: bottom;
+}
+
+.Input
+{
+    float: left;
+    padding: 5px;
+}

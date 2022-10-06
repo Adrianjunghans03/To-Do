@@ -1,0 +1,40 @@
+.task
+{
+    margin: auto;
+    display: flex;
+    border-style: none;
+    background-color: #ffe5df ;
+    border: 2px solid #ffe7e2 ;
+    border-radius: 2px;
+    max-width: 375px;
+    height: 25px;
+    margin-top: 10px;
+    margin-left: 55px;
+    color: rgba(230, 230, 230, 0.617); 
+      
+}
+.del{
+    max-height: 20px;
+    margin-left: 5px;
+    background: transparent;
+    color: grey;
+    border: none;
+    margin: auto;
+    margin-right: 0;
+}
+
+.checkmark{
+    height: 15px;
+    width: 15px;
+    background-color: #eeee;
+
+}
+
+.checkmark:checked::after
+{
+    background-color: green;
+}
+.font{
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
