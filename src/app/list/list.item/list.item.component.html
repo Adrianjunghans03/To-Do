@@ -12,9 +12,12 @@
     <!-- <div *ngIf ="checkbox == false">{{this.tasks}}</div>
     
     <div *ngIf ="checkbox == true"><del>{{this.tasks}}</del></div> -->
-
+<!-- 
     <div *ngIf="checkbox == false;else trueCheckbox">{{this.tasks}}</div>
-    <ng-template #trueCheckbox><del>{{this.tasks}}</del></ng-template>
+    <ng-template #trueCheckbox><del>{{this.tasks}}</del></ng-template> -->
+
+    
+    <div class="checked-text" [class.checked-text___checked]="checkbox == true">{{this.tasks}}</div>
     
 </div>
 

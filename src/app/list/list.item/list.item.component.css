@@ -38,3 +38,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: black;
 }
+
+.checked-text___checked{
+    text-decoration: line-through;
+}
