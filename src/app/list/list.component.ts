@@ -1,6 +1,10 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import {Task} from '../Task/task.model'
-import { CountService } from '../services/count.service';
+import { Component, OnInit} from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+
+import { initialState, RootState } from '../todo.reducer';
+import { props, Store } from '@ngrx/store';
+import { map } from 'rxjs';
+
 
 
 
@@ -9,65 +13,28 @@ import { CountService } from '../services/count.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css'],
 
-  
+
+
 })
-export class ListComponent implements OnInit, OnChanges {
+export class ListComponent implements OnInit {
 
-  //takes input from app and stores it in todoFromParent
-  @Input() todoFromParent:any = 'null';
+  tasks = [{id:0, value:""}];
 
-  
-  singleid:number;
-  idback = null;
-  //countednumber:number = null;
+  tasks$=this.store.select('rootValue').pipe(map((gs) => gs.toDos));
+  taskID$ = this.tasks$.pipe(map(tasks => tasks.map(t => t.id)))
 
-  constructor(private countService: CountService) { }
+    todoReducer: object;
+  constructor(private store: Store<{rootValue:RootState}>) {   }
 
-
-
-  getidparent(id:number)
-  {
-    this.idback = id;
-    const newCreatedTasks= this.myTasks.filter(eachTask => eachTask.id!==id)
-    this.myTasks = newCreatedTasks
-    console.log(this.myTasks)
-    
-  }
-
-  updateCounter():void  {
-    
-    const countednumber = this.myTasks.length;
-    this.countService.Counter.next(countednumber);
-    console.log(this.myTasks);
-    console.log(countednumber);
-  }
-
-  myTasks: Task[] = [
-  ];
-  
   ngOnInit(): void {
-  
-    //To delete first item in Array
-    this.myTasks = [];
+    // this.tasks$ = this.store.select('rootValue').pipe(map((gs) => gs.toDos));
+    // this.tasksID$ = this.tasks$.pipe(map(tasks => tasks.map(t => t.id)))
+    // this.tasks$.subscribe(t => this.taskID = t);
   }
 
 
-  ngOnChanges():void{  
-
-  //Single Components from Model get Stored in array
-  
-    if(!this.todoFromParent){
-      return
-    }
-
-    const todoListItem:Task = {dailyTask:this.todoFromParent,checked:false, id: this.myTasks.length +1};
-    this.myTasks = this.myTasks.concat([todoListItem]);
-    this.singleid = todoListItem.id -1;
-    this.updateCounter();
 
 
 
 
-
-}
 }

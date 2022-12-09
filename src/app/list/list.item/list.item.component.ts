@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
+import { buffer, map, Observable, ReplaySubject } from 'rxjs';
 
-
+import { props, Store } from '@ngrx/store';
+import { RootState } from 'src/app/todo.reducer';
+import { deleting } from 'src/app/todo.actions';
 
 
 
@@ -11,59 +14,57 @@ import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angu
   })
 
   export class listItemComponent implements OnInit, OnChanges{
-    @Output() getid = new EventEmitter();
-    @Input() todoFromList:string = '';
-    @Output() getcheck = new EventEmitter();
 
-    //Import the variable that is assigned in HTML 
-    @Input() sid:number;
-    tasks: string;
+@Input() set task(val:{id:number;value:string}){
+this.task$.next(val);
+}
+
+    task$ = new ReplaySubject<{id:number;value:string}>(1);
+
+    todoReducer: object;
+
+    tasks = [{id:0, value:""}];
     check: boolean = false;
     color:string;
     fontcolor:string;
-
-    disabled = "";
+    obj = { id: 0, value: ""};
 
     checkbox:boolean = false;
-    checkboxclick()
+
+    cbClick()
     {
+
       this.checkbox =! this.check;
-      this.getcheck.next(this.checkbox);
-      
       //if Checkbox is checked then grey it out
       if(this.checkbox == true)
-      { 
+      {
       this.color="rgba(230, 230, 230, 0.3)";
       this.fontcolor="rgba(200, 200, 200, 0.3)";
-       
+
       console.log(this.fontcolor);
-      
+
       }
       else
       this.color=" #ffcec3 ";
       this.fontcolor ="black";
     }
 
-    
-    
     Delete()
     {
-      console.log(this.tasks);
-      console.log(this.sid);
-      this.getid.next(this.sid);
-
+      this.task$.subscribe(resp => this.obj = resp);
+      this.store.dispatch(deleting({id: this.obj.id}));
     }
-    
-      constructor() { }
-    
+
+    constructor(private store: Store<{rootValue:RootState}>) {
+    }
+
       ngOnInit(): void {
-        
       }
-      
+
       ngOnChanges()
       {
-        this.tasks = this.todoFromList;
+
 
       }
-    
+
     }
