@@ -1,13 +1,10 @@
 <div class="app">
 <p class ="Heading">To-Do-App</p>
-<p >{{number}}</p>
-<!-- <p *ngIf="currentCount$ | async as currentCount">{{currentCount}}</p> -->
+<a *ngIf="count$ | async as count">{{count}} more to go! </a>
 <div class="Header">
+    <app-input></app-input>
+</div>
+    <app-list></app-list>
 
-    <!-- Data recieved from input.component assigned to function -->
-    <app-input (onDailyTaskChanged)="onDailyTaskChangedParent($event)"></app-input>
 </div>
-    <!-- Variable created in list recieves value from app -->
-    <app-list [todoFromParent]="todoFromInputChild"></app-list>
-    <!-- <button (click) ="recieveCount()">:D</button> -->
-</div>
+

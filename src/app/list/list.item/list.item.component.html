@@ -1,26 +1,28 @@
 
-<div class="task" [style.background-color]="color" [style.border-color]="color">
+<ng-container *ngIf="task$ | async as task">
+
+<div  class="task" [style.background-color]="color" [style.border-color]="color">
 
     <input type ="checkbox"
-    class ="checkmark" 
-    [(ngModel)] ="check" 
-    (click) ="checkboxclick()">
-    
-    <div class="font" 
+    class ="checkmark"
+    [(ngModel)] ="check"
+    (click) ="cbClick()"
+    >
+
+    <div class="font"
     [style.color]="fontcolor">
-    
-    <!-- <div *ngIf ="checkbox == false">{{this.tasks}}</div>
-    
-    <div *ngIf ="checkbox == true"><del>{{this.tasks}}</del></div> -->
-<!-- 
-    <div *ngIf="checkbox == false;else trueCheckbox">{{this.tasks}}</div>
-    <ng-template #trueCheckbox><del>{{this.tasks}}</del></ng-template> -->
 
-    
-    <div class="checked-text" [class.checked-text___checked]="checkbox == true">{{this.tasks}}</div>
-    
+    <div *ngIf ="checkbox == false">{{task.value}}</div>
+
+    <div *ngIf ="checkbox == true"><del>{{task.value}}</del></div>
+
+
+    <div class="checked-text" [class.checked-text___checked]="checkbox == true"></div>
+
+
+  </div>
+<button  type ="button" class ="del" (click) ="Delete(task)">&#10006;</button>
+
+
 </div>
-
-<button type ="button" class ="del" (click) ="Delete()">&#10006;</button>
-</div>
-
+</ng-container>

@@ -1,10 +1,7 @@
-<div class="list">
-    <ng-container *ngFor="let myIndividualTask of myTasks">
-      <app-list-item 
-      [todoFromList]="myIndividualTask.dailyTask" 
-      [sid]="myIndividualTask.id" 
-      (getid)="getidparent($event)">
-      </app-list-item>   
+<div  class="list">
+  <ng-container  *ngFor="let task of tasks$ |async" >
+      <app-list-item [task]="task"></app-list-item>
     </ng-container>
 
 </div>
+
