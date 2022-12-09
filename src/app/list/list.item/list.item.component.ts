@@ -49,10 +49,15 @@ this.task$.next(val);
       this.fontcolor ="black";
     }
 
-    Delete()
+    Delete(task:{id:number, value:string})
     {
-      this.task$.subscribe(resp => this.obj = resp);
-      this.store.dispatch(deleting({id: this.obj.id}));
+      this.store.dispatch(deleting({id: task.id}));
+      // this.task$.subscribe(resp => {
+      //   this.obj = resp;
+      //   this.store.dispatch(deleting({id: this.obj.id}));
+
+      // });
+
     }
 
     constructor(private store: Store<{rootValue:RootState}>) {
